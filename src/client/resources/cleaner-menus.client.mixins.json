@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "vertigo.cleanermenus.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ScreenMixin",
+    "SplashTextResourceSupplierMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

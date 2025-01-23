@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "cleaner-menus",
+  "version": "${version}",
+  "name": "Cleaner Menus",
+  "description": "Cleans up certain menus.",
+  "authors": [
+    "Vertigo GX"
+  ],
+  "contact": {
+    "sources": "N/A"
+  },
+  "license": "MIT",
+  "icon": "assets/cleaner-menus/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "vertigo.cleanermenus.CleanerMenusClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "cleaner-menus.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": ">=13.0.1"
+  }
+}
