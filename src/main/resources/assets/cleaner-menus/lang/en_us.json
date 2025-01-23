@@ -1,7 +1,7 @@
 {
   "text.config.cleaner-menus.title": "Cleaner Menus - Options",
-  "text.config.cleaner-menus.option.addInGameMenuBlur": "Add in-game-menu blur",
-  "text.config.cleaner-menus.option.addInGameMenuBlur.tooltip": "Adds the vanilla blur effect to the backgrounds of in-game menus.\nNote: The intensity of the blur effect can be set in the vanilla accessibility settings.",
-  "text.config.cleaner-menus.option.disableMainMenuDarkening": "Disable main-menu darkening",
-  "text.config.cleaner-menus.option.disableMainMenuDarkening.tooltip": "Disables the darkening of the main menu backgrounds. This includes the pause menu."
+  "text.config.cleaner-menus.option.addInGameMenuBlur": "Enable in-game-menu blur",
+  "text.config.cleaner-menus.option.addInGameMenuBlur.tooltip": "Adds the vanilla blur effect to the background of in-game menus.\nNote: The intensity of the blur can be set via the vanilla accessibility settings.",
+  "text.config.cleaner-menus.option.disableMainMenuDarkening": "Disable game-menu darkening",
+  "text.config.cleaner-menus.option.disableMainMenuDarkening.tooltip": "Removes the darkening of the background of game menus, such as the pause menu."
 }
