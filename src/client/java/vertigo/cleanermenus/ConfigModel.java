@@ -9,6 +9,5 @@ public class ConfigModel {
 
 	public boolean addInGameMenuBlur = true;
 	public boolean disableMainMenuDarkening = false;
-	public boolean disableSplashText = true;
 
 }
