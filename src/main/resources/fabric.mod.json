@@ -17,6 +17,9 @@
   "entrypoints": {
     "client": [
       "vertigo.cleanermenus.CleanerMenusClient"
+    ],
+    "modmenu": [
+      "vertigo.cleanermenus.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -32,6 +35,6 @@
     "fabric-api": "*"
   },
   "suggests": {
-    "modmenu": ">=13.0.1"
+    "modmenu": ">=13.0.0"
   }
 }

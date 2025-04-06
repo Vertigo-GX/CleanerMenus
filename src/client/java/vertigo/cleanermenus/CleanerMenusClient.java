@@ -8,7 +8,7 @@ public class CleanerMenusClient implements ClientModInitializer {
 
 	public static final String MOD_ID = "cleaner-menus";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final vertigo.cleanermenus.ModConfig CONFIG = vertigo.cleanermenus.ModConfig.createAndLoad();
+	public static final Config CONFIG = new Config();
 
 	@Override
 	public void onInitializeClient() {

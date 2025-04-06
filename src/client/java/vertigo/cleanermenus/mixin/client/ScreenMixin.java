@@ -17,14 +17,14 @@ public abstract class ScreenMixin {
 
 	@Inject(method = "renderDarkening(Lnet/minecraft/client/gui/DrawContext;IIII)V", at = @At("HEAD"), cancellable = true)
 	public void renderDarkeningInject(DrawContext context, int x, int y, int width, int height, CallbackInfo info) {
-		if (CleanerMenusClient.CONFIG.disableMainMenuDarkening()) {
+		if (CleanerMenusClient.CONFIG.removeMainMenuDarkening) {
 			info.cancel();
 		}
 	}
 
 	@Inject(method = "renderInGameBackground", at = @At("HEAD"), cancellable = true)
 	public void renderInGameBackgroundInject(DrawContext context, CallbackInfo info) {
-		if (CleanerMenusClient.CONFIG.addInGameMenuBlur()) {
+		if (CleanerMenusClient.CONFIG.addInGameMenuBlur) {
 			this.applyBlur();
 		}
 		info.cancel();
