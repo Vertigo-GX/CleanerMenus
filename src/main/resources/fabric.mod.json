@@ -3,7 +3,7 @@
   "id": "cleaner-menus",
   "version": "${version}",
   "name": "Cleaner Menus",
-  "description": "Cleans up certain menus.",
+  "description": "Makes certain GUI elements easier on the eyes.",
   "authors": [
     "Vertigo GX"
   ],
