@@ -8,10 +8,12 @@ public class Config {
 
 	private static final String SEPARATOR = " = ";
 	private static final String ADD_IN_GAME_MENU_BLUR = "addInGameMenuBlur";
-	private static final String REMOVE_MAIN_MENU_DARKENING = "removeMainMenuDarkening";
+	private static final String DISABLE_IN_GAME_MENU_DARKENING = "disableInGameMenuDarkening";
+	private static final String DISABLE_MAIN_MENU_DARKENING = "disableMainMenuDarkening";
 
 	public boolean addInGameMenuBlur = true;
-	public boolean removeMainMenuDarkening = false;
+	public boolean disableInGameMenuDarkening = true;
+	public boolean disableMainMenuDarkening = false;
 
 	public Config() {
 		if (!read()) {
@@ -23,7 +25,8 @@ public class Config {
 		File file = getFile();
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 			writer.write(ADD_IN_GAME_MENU_BLUR + SEPARATOR + addInGameMenuBlur + System.lineSeparator());
-			writer.write(REMOVE_MAIN_MENU_DARKENING + SEPARATOR + removeMainMenuDarkening);
+			writer.write(DISABLE_IN_GAME_MENU_DARKENING + SEPARATOR + disableInGameMenuDarkening + System.lineSeparator());
+			writer.write(DISABLE_MAIN_MENU_DARKENING + SEPARATOR + disableMainMenuDarkening);
 		} catch (IOException e) {
 			CleanerMenusClient.LOGGER.error("Failed to write config ({})", file.getPath());
 		}
@@ -43,7 +46,8 @@ public class Config {
 				}
 				switch (segments[0]) {
 					case ADD_IN_GAME_MENU_BLUR -> addInGameMenuBlur = segments[1].equals("true");
-					case REMOVE_MAIN_MENU_DARKENING -> removeMainMenuDarkening = segments[1].equals("true");
+					case DISABLE_IN_GAME_MENU_DARKENING -> disableInGameMenuDarkening = segments[1].equals("true");
+					case DISABLE_MAIN_MENU_DARKENING -> disableMainMenuDarkening = segments[1].equals("true");
 				}
 			}
 		} catch (IOException e) {

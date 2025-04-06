@@ -2,6 +2,8 @@
   "cleaner-menus.text.optionsTitle": "Cleaner Menus - Options",
   "cleaner-menus.option.addInGameMenuBlur": "Add in-game-menu blur",
   "cleaner-menus.tooltip.addInGameMenuBlur": "Adds the vanilla blur effect to the background of in-game menus. The intensity of the blur can be set via the vanilla accessibility settings.\n\nDefault: ON",
-  "cleaner-menus.option.removeMainMenuDarkening": "Remove game-menu darkening",
-  "cleaner-menus.tooltip.removeMainMenuDarkening": "Removes the darkening of the background of game menus, such as the pause menu.\n\nDefault: OFF"
+  "cleaner-menus.option.disableInGameMenuDarkening": "Disable in-game-menu darkening",
+  "cleaner-menus.tooltip.disableInGameMenuDarkening": "Disables the darkening of the background of in-game menus.\n\nDefault: ON",
+  "cleaner-menus.option.disableMainMenuDarkening": "Disable game-menu darkening",
+  "cleaner-menus.tooltip.disableMainMenuDarkening": "Disables the darkening of the background of game menus, such as the pause menu.\n\nDefault: OFF"
 }

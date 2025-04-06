@@ -30,8 +30,11 @@ public class ConfigScreen extends Screen {
 		adder.add(createToggleButton("addInGameMenuBlur", CleanerMenusClient.CONFIG.addInGameMenuBlur, b -> {
 			setToggleButtonMessage(b, "addInGameMenuBlur", CleanerMenusClient.CONFIG.addInGameMenuBlur ^= true);
 		}));
-		adder.add(createToggleButton("removeMainMenuDarkening", CleanerMenusClient.CONFIG.removeMainMenuDarkening, b -> {
-			setToggleButtonMessage(b, "removeMainMenuDarkening", CleanerMenusClient.CONFIG.removeMainMenuDarkening ^= true);
+		adder.add(createToggleButton("disableInGameMenuDarkening", CleanerMenusClient.CONFIG.disableInGameMenuDarkening, b -> {
+			setToggleButtonMessage(b, "disableInGameMenuDarkening", CleanerMenusClient.CONFIG.disableInGameMenuDarkening ^= true);
+		}));
+		adder.add(createToggleButton("disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening, b -> {
+			setToggleButtonMessage(b, "disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening ^= true);
 		}));
 		layout.addBody(grid);
 		layout.addFooter(ButtonWidget.builder(ScreenTexts.DONE, b -> {
