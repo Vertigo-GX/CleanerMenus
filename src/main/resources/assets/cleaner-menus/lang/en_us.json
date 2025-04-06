@@ -5,5 +5,7 @@
   "cleaner-menus.option.disableInGameMenuDarkening": "Disable in-game-menu darkening",
   "cleaner-menus.tooltip.disableInGameMenuDarkening": "Disables the darkening of the background of in-game menus.\n\nDefault: ON",
   "cleaner-menus.option.disableMainMenuDarkening": "Disable game-menu darkening",
-  "cleaner-menus.tooltip.disableMainMenuDarkening": "Disables the darkening of the background of game menus, such as the pause menu.\n\nDefault: OFF"
+  "cleaner-menus.tooltip.disableMainMenuDarkening": "Disables the darkening of the background of game menus, such as the pause menu.\n\nDefault: OFF",
+  "cleaner-menus.option.disableThirdPersonFrontView": "Disable third-person front view",
+  "cleaner-menus.tooltip.disableThirdPersonFrontView": "Disables the front view of the third-person camera.\n\nDefault: OFF"
 }

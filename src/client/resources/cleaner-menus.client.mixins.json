@@ -3,7 +3,8 @@
   "package": "vertigo.cleanermenus.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "ScreenMixin"
+    "ScreenMixin",
+    "PerspectiveMixin"
   ],
   "injectors": {
     "defaultRequire": 1

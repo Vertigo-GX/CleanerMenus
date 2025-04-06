@@ -36,6 +36,9 @@ public class ConfigScreen extends Screen {
 		adder.add(createToggleButton("disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening, b -> {
 			setToggleButtonMessage(b, "disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening ^= true);
 		}));
+		adder.add(createToggleButton("disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView, b -> {
+			setToggleButtonMessage(b, "disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView ^= true);
+		}));
 		layout.addBody(grid);
 		layout.addFooter(ButtonWidget.builder(ScreenTexts.DONE, b -> {
 			close();
