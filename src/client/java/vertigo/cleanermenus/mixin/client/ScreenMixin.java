@@ -13,7 +13,7 @@ import vertigo.cleanermenus.CleanerMenusClient;
 public abstract class ScreenMixin {
 
 	@Shadow
-	protected abstract void applyBlur();
+	protected abstract void applyBlur(DrawContext context);
 
 	@Inject(method = "renderDarkening(Lnet/minecraft/client/gui/DrawContext;IIII)V", at = @At("HEAD"), cancellable = true)
 	public void renderDarkeningInject(DrawContext context, int x, int y, int width, int height, CallbackInfo info) {
@@ -25,7 +25,7 @@ public abstract class ScreenMixin {
 	@Inject(method = "renderInGameBackground", at = @At("HEAD"), cancellable = true)
 	public void renderInGameBackgroundInject(DrawContext context, CallbackInfo info) {
 		if (CleanerMenusClient.CONFIG.addInGameMenuBlur) {
-			this.applyBlur();
+			applyBlur(context);
 		}
 		if (CleanerMenusClient.CONFIG.disableInGameMenuDarkening) {
 			info.cancel();

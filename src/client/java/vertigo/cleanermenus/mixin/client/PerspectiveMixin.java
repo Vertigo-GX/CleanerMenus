@@ -17,7 +17,7 @@ public abstract class PerspectiveMixin {
 	@Inject(method = "next", at = @At("HEAD"), cancellable = true)
 	public void next(CallbackInfoReturnable<Perspective> info) {
 		if (CleanerMenusClient.CONFIG.disableThirdPersonFrontView) {
-			info.setReturnValue(Perspective.values()[this.isFirstPerson() ? 1 : 0]);
+			info.setReturnValue(Perspective.values()[isFirstPerson() ? 1 : 0]);
 		}
 	}
 
