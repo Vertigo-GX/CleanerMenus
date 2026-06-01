@@ -7,54 +7,65 @@ import java.io.*;
 public class Config {
 
 	private static final String SEPARATOR = " = ";
+
 	private static final String ADD_IN_GAME_MENU_BLUR = "addInGameMenuBlur";
+
 	private static final String DISABLE_IN_GAME_MENU_DARKENING = "disableInGameMenuDarkening";
+
 	private static final String DISABLE_MAIN_MENU_DARKENING = "disableMainMenuDarkening";
-	private static final String DISABLE_THIRD_PERSON_FRONT_VIEW= "disableThirdPersonFrontView";
+
+	private static final String DISABLE_THIRD_PERSON_FRONT_VIEW = "disableThirdPersonFrontView";
 
 	public boolean addInGameMenuBlur = true;
+
 	public boolean disableInGameMenuDarkening = true;
+
 	public boolean disableMainMenuDarkening = false;
+
 	public boolean disableThirdPersonFrontView = false;
 
 	public Config() {
-		if (!read()) {
+		if(!read()) {
 			write();
 		}
 	}
 
 	public void write() {
 		File file = getFile();
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+		try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 			writer.write(ADD_IN_GAME_MENU_BLUR + SEPARATOR + addInGameMenuBlur + System.lineSeparator());
 			writer.write(DISABLE_IN_GAME_MENU_DARKENING + SEPARATOR + disableInGameMenuDarkening + System.lineSeparator());
 			writer.write(DISABLE_MAIN_MENU_DARKENING + SEPARATOR + disableMainMenuDarkening + System.lineSeparator());
 			writer.write(DISABLE_THIRD_PERSON_FRONT_VIEW + SEPARATOR + disableThirdPersonFrontView);
-		} catch (IOException e) {
+		} catch(IOException e) {
 			CleanerMenusClient.LOGGER.error("Failed to write config ({})", file.getPath());
 		}
 	}
 
 	public boolean read() {
 		File file = getFile();
-		if (!file.exists()) {
+		if(!file.exists()) {
 			return false;
 		}
-		try (BufferedReader reader = new BufferedReader((new FileReader(file)))) {
+		try(BufferedReader reader = new BufferedReader((new FileReader(file)))) {
 			String line;
-			while ((line = reader.readLine()) != null) {
+			while((line = reader.readLine()) != null) {
 				String[] segments = line.split(SEPARATOR);
-				if (segments.length != 2 || segments[0].isEmpty() || segments[1].isEmpty()) {
+				if(segments.length != 2 || segments[0].isEmpty() || segments[1].isEmpty()) {
 					continue;
 				}
-				switch (segments[0]) {
-					case ADD_IN_GAME_MENU_BLUR -> addInGameMenuBlur = segments[1].equals("true");
-					case DISABLE_IN_GAME_MENU_DARKENING -> disableInGameMenuDarkening = segments[1].equals("true");
-					case DISABLE_MAIN_MENU_DARKENING -> disableMainMenuDarkening = segments[1].equals("true");
-					case DISABLE_THIRD_PERSON_FRONT_VIEW -> disableThirdPersonFrontView = segments[1].equals("true");
+				switch(segments[0]) {
+					case ADD_IN_GAME_MENU_BLUR ->
+							addInGameMenuBlur = segments[1].equals("true");
+					case DISABLE_IN_GAME_MENU_DARKENING ->
+							disableInGameMenuDarkening = segments[1].equals("true");
+					case DISABLE_MAIN_MENU_DARKENING ->
+							disableMainMenuDarkening = segments[1].equals("true");
+					case DISABLE_THIRD_PERSON_FRONT_VIEW ->
+							disableThirdPersonFrontView = segments[1].equals("true");
 				}
 			}
-		} catch (IOException e) {
+		} catch(IOException e) {
 			CleanerMenusClient.LOGGER.error("Failed to read config ({})", file.getPath());
 		}
 		return true;

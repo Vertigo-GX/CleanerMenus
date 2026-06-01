@@ -1,14 +1,18 @@
 package vertigo.cleanermenus;
 
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.tooltip.Tooltip;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.screen.ScreenTexts;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.StringWidget;
+import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 
 public class ConfigScreen extends Screen {
 
 	private static final int BUTTON_WIDTH = 310;
+
 	private static final int BUTTON_HEIGHT = 20;
 
 	private final Screen PARENT;
@@ -16,51 +20,41 @@ public class ConfigScreen extends Screen {
 	private boolean modified = false;
 
 	protected ConfigScreen(Screen parent) {
-		super(Text.literal("cleaner-menus.options"));
+		super(Component.literal("cleaner-menus.options"));
 		this.PARENT = parent;
 	}
 
 	@Override
 	protected void init() {
-		ThreePartsLayoutWidget layout = new ThreePartsLayoutWidget(this);
-		layout.addHeader(new TextWidget(Text.translatable("cleaner-menus.text.optionsTitle"), this.textRenderer));
-		GridWidget grid = new GridWidget();
-		grid.setRowSpacing(5);
-		GridWidget.Adder adder = grid.createAdder(1);
-		adder.add(createToggleButton("addInGameMenuBlur", CleanerMenusClient.CONFIG.addInGameMenuBlur, b -> {
-			setToggleButtonMessage(b, "addInGameMenuBlur", CleanerMenusClient.CONFIG.addInGameMenuBlur ^= true);
-		}));
-		adder.add(createToggleButton("disableInGameMenuDarkening", CleanerMenusClient.CONFIG.disableInGameMenuDarkening, b -> {
-			setToggleButtonMessage(b, "disableInGameMenuDarkening", CleanerMenusClient.CONFIG.disableInGameMenuDarkening ^= true);
-		}));
-		adder.add(createToggleButton("disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening, b -> {
-			setToggleButtonMessage(b, "disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening ^= true);
-		}));
-		adder.add(createToggleButton("disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView, b -> {
-			setToggleButtonMessage(b, "disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView ^= true);
-		}));
-		layout.addBody(grid);
-		layout.addFooter(ButtonWidget.builder(ScreenTexts.DONE, b -> {
-			close();
-		}).build());
-		layout.forEachChild(this::addDrawableChild);
-		layout.refreshPositions();
+		HeaderAndFooterLayout layout = new HeaderAndFooterLayout(this);
+		layout.addToHeader(new StringWidget(Component.translatable("cleaner-menus.text.optionsTitle"), this.font));
+		GridLayout grid = new GridLayout();
+		grid.rowSpacing(5);
+		GridLayout.RowHelper adder = grid.createRowHelper(1);
+		adder.addChild(createToggleButton("addInGameMenuBlur", CleanerMenusClient.CONFIG.addInGameMenuBlur, b -> setToggleButtonMessage(b, "addInGameMenuBlur", CleanerMenusClient.CONFIG.addInGameMenuBlur ^= true)));
+		adder.addChild(createToggleButton("disableInGameMenuDarkening", CleanerMenusClient.CONFIG.disableInGameMenuDarkening, b -> setToggleButtonMessage(b, "disableInGameMenuDarkening", CleanerMenusClient.CONFIG.disableInGameMenuDarkening ^= true)));
+		adder.addChild(createToggleButton("disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening, b -> setToggleButtonMessage(b, "disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening ^= true)));
+		adder.addChild(createToggleButton("disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView, b -> setToggleButtonMessage(b, "disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView ^= true)));
+		layout.addToContents(grid);
+		layout.addToFooter(Button.builder(CommonComponents.GUI_DONE, b -> onClose()).build());
+		layout.visitWidgets(this::addRenderableWidget);
+		layout.arrangeElements();
 	}
 
 	@Override
-	public void close() {
-		if (modified) {
+	public void onClose() {
+		if(modified) {
 			CleanerMenusClient.CONFIG.write();
 		}
-		this.client.setScreen(this.PARENT);
+		this.minecraft.setScreen(this.PARENT);
 	}
 
-	private ButtonWidget createToggleButton(String key, boolean value, ButtonWidget.PressAction action) {
-		return ButtonWidget.builder(ScreenTexts.composeToggleText(Text.translatable("cleaner-menus.option." + key), value), action).tooltip(Tooltip.of(Text.translatable("cleaner-menus.tooltip." + key))).size(BUTTON_WIDTH, BUTTON_HEIGHT).build();
+	private Button createToggleButton(String key, boolean value, Button.OnPress action) {
+		return Button.builder(CommonComponents.optionStatus(Component.translatable("cleaner-menus.option." + key), value), action).tooltip(Tooltip.create(Component.translatable("cleaner-menus.tooltip." + key))).size(BUTTON_WIDTH, BUTTON_HEIGHT).build();
 	}
 
-	private void setToggleButtonMessage(ButtonWidget button, String key, boolean value) {
-		button.setMessage(ScreenTexts.composeToggleText(Text.translatable("cleaner-menus.option." + key), value));
+	private void setToggleButtonMessage(Button button, String key, boolean value) {
+		button.setMessage(CommonComponents.optionStatus(Component.translatable("cleaner-menus.option." + key), value));
 		modified = true;
 	}
 
