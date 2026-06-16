@@ -36,7 +36,7 @@ public class ConfigScreen extends Screen {
 		adder.addChild(createToggleButton("disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening, b -> setToggleButtonMessage(b, "disableMainMenuDarkening", CleanerMenusClient.CONFIG.disableMainMenuDarkening ^= true)));
 		adder.addChild(createToggleButton("disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView, b -> setToggleButtonMessage(b, "disableThirdPersonFrontView", CleanerMenusClient.CONFIG.disableThirdPersonFrontView ^= true)));
 		layout.addToContents(grid);
-		layout.addToFooter(Button.builder(CommonComponents.GUI_DONE, b -> onClose()).build());
+		layout.addToFooter(Button.builder(CommonComponents.GUI_DONE, _ -> onClose()).build());
 		layout.visitWidgets(this::addRenderableWidget);
 		layout.arrangeElements();
 	}
@@ -46,7 +46,7 @@ public class ConfigScreen extends Screen {
 		if(modified) {
 			CleanerMenusClient.CONFIG.write();
 		}
-		this.minecraft.setScreen(this.PARENT);
+		this.minecraft.gui.setScreen(this.PARENT);
 	}
 
 	private Button createToggleButton(String key, boolean value, Button.OnPress action) {
